@@ -9,10 +9,11 @@ import Students from "./components/Students";
 ReactDOM.render(
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="home" element={<App/>} />
-            <Route path="campuses" element={<Campuses />} />
-            <Route path="students" element={<Students />} />
+            <Route path="home" element={<App />} />
+            <Route path="/" element={<App />}>
+                <Route path="campuses" element={<Campuses />} />
+                <Route path="students" element={<Students />} />
+            </Route>
         </Routes>
     </BrowserRouter>,
     document.getElementById('root')
