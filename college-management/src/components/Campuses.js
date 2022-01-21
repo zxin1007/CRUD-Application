@@ -1,6 +1,6 @@
 import React from'react';
 
-function Campuses() {
+function Campuses({props}) {
 
 }
 
