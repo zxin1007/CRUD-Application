@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Link, Outlet} from 'react-router-dom';
 import '../App.css';
 
 function App() {
@@ -12,6 +12,8 @@ function App() {
                 <Link to="/campuses">Campuses</Link> |{" "}
                 <Link to="/students">Students</Link>
             </nav>
+
+            <Outlet />
         </>
     );
 }
