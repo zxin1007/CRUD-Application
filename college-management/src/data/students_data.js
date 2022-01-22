@@ -1,7 +1,7 @@
 let students = [
     {
-        firstName: "A",
-        lastName: "a",
+        firstName: "Z",
+        lastName: "z",
         email: "a@gmail.com",
         image: "No image available",
         gpa: 0.0,
