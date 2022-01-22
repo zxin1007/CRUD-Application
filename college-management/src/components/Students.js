@@ -8,15 +8,18 @@ function Students() {
         a.lastName.localeCompare(b.lastName)  // Sort alphabetically
     );
 
+    const noStudents = () => {
+        console.log(students.length);
+        if (students.length === 0) {
+            return <p>No student exists in the database.</p>
+        }
+    }
+
     return (
         <>
             <h1>All Students</h1>
-            {/*<ul>*/}
-            {/*    {props.map(student =>*/}
-            {/*        <li>*/}
-            {/*            Name: {student.name}*/}
-            {/*        </li>)}*/}
-            {/*</ul>*/}
+
+            {noStudents()}
 
             {students.map(student => (
                 <ul style={{ display: "block", margin: "1rem 0"}}>
