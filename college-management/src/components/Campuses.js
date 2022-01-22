@@ -5,6 +5,13 @@ import {getCampuses} from "../data/campuses_data";
 function Campuses() {
     let campuses = getCampuses();
 
+    const noCampus = () => {
+        console.log(campuses.length);
+        if (campuses.length === 0) {
+            return <p>No campus exists in the database.</p>
+        }
+    }
+
     return (
         <>
             <h2>All Campuses</h2>
@@ -15,6 +22,8 @@ function Campuses() {
             {/*        <img src={campus.image} alt={campus.id}/>*/}
             {/*    </li>)}*/}
             {/*</ul>*/}
+
+            {noCampus()}
 
             {campuses.map(campus => (
                 <span style={{ display: "block", margin: "1rem 0"}}>
