@@ -1,11 +1,27 @@
 import React from'react';
+import axios from 'axios';
 import {Link, Outlet, useNavigate} from "react-router-dom";
-import {getCampuses, deleteCampus} from "../data/campuses_data";
+// import {deleteCampus} from "../data/campuses_data";
 import CampusForm from "./CampusForm";
 
 function Campuses() {
     let navigate = useNavigate();
-    let campuses = getCampuses();
+
+    const [campuses, setCampuses] = React.useState([]);
+
+    // Load students API from local host
+    React.useEffect(async () => {
+        try {
+            await axios.get("http://localhost:3001/api/campus")
+                .then((response) => {
+                    console.log(response.data)
+                    setCampuses(response.data)
+                    console.log(campuses);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
 
     const noCampus = () => {
         console.log(campuses.length);
@@ -13,24 +29,6 @@ function Campuses() {
             return <p>No campus exists in the database.</p>
         }
     }
-    // Image URL validation
-    // function isValidHttpUrl(string) {
-    //     let url;
-    //
-    //     try {
-    //         url = new URL(string);
-    //     } catch (_) {
-    //         return false;
-    //     }
-    //
-    //     return url.protocol === "http:" || url.protocol === "https:";
-    // }
-
-    // for (let image in campuses) {
-    //     if (!isValidHttpUrl(campuses[image].image)) {
-    //         campuses[image].image = "No image is available";
-    //     }
-    // }
 
     return (
         <>
@@ -40,7 +38,7 @@ function Campuses() {
 
             <div className="campus-container">
             {campuses.map(campus => (
-                <div>
+                <div key={campus.name}>
                     <Link to={`/campuses/${campus.id}`}
                           key={campus.name}
                           style={{textDecoration: 'none',
@@ -50,16 +48,16 @@ function Campuses() {
                     </Link>
 
                     <p>
-                        <img src={campus.image} width="200px"/>
+                        <img src={campus.img} width="200px"/>
                     </p>
 
-                    <button
-                        onClick={() => {
-                            deleteCampus(campus.name);
-                            navigate("/campuses")}}
-                        className="delete-button"
-                    >X</button>
-
+                    {/*Todo*/}
+                    {/*<button*/}
+                    {/*    onClick={() => {*/}
+                    {/*        deleteCampus(campus.name);*/}
+                    {/*        navigate("/campuses")}}*/}
+                    {/*    className="delete-button"*/}
+                    {/*>X</button>*/}
                 </div>
             ))}
             </div>
