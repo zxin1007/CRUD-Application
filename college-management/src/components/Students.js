@@ -1,6 +1,7 @@
 import React from'react';
 import {Link, Outlet} from "react-router-dom";
 import {getStudents} from "../data/students_data";
+import StudentForm from "./StudentForm";
 
 function Students() {
     let students = getStudents();
@@ -32,6 +33,8 @@ function Students() {
                     </Link>
                 </ul>
             ))}
+
+            <StudentForm />
 
             <Outlet />
         </>
