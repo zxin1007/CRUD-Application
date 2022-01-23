@@ -1,8 +1,9 @@
 import React from'react';
-import {Link, Outlet} from "react-router-dom";
-import {getCampuses} from "../data/campuses_data";
+import {Link, Outlet, useNavigate} from "react-router-dom";
+import {getCampuses, deleteCampus} from "../data/campuses_data";
 
 function Campuses() {
+    let navigate = useNavigate();
     let campuses = getCampuses();
 
     const noCampus = () => {
@@ -30,6 +31,13 @@ function Campuses() {
 
                     <span style={{ display: "block", margin: "1rem 0"}}>
                         {campus.image}
+                    </span>
+
+                    <span>
+                        <button onClick={() => {
+                            deleteCampus(campus.name);
+                            navigate("/campuses")
+                        }}>X</button> Remove Campus
                     </span>
                 </span>
             ))}
