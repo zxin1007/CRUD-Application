@@ -1,6 +1,7 @@
 import React from'react';
 import {Link, Outlet, useNavigate} from "react-router-dom";
 import {getCampuses, deleteCampus} from "../data/campuses_data";
+import CampusForm from "./CampusForm";
 
 function Campuses() {
     let navigate = useNavigate();
@@ -41,6 +42,8 @@ function Campuses() {
                     </span>
                 </span>
             ))}
+
+            <CampusForm />
 
             <Outlet />
         </>
