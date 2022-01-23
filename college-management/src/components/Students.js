@@ -1,10 +1,26 @@
 import React from'react';
+import axios from 'axios';
 import {Link, Outlet} from "react-router-dom";
-import {getStudents} from "../data/students_data";
+// import {getStudents} from "../data/students_data";
 import StudentForm from "./StudentForm";
 
 function Students() {
-    let students = getStudents();
+    const [students, setStudents] = React.useState([]);
+
+    // Load students API from local host
+    React.useEffect(async () => {
+        try {
+            await axios.get("http://localhost:3001/api/student")
+                .then((response) => {
+                    console.log(response.data)
+                    setStudents(response.data)
+                    console.log(students);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
+
     students.sort((a, b) =>
         a.lastName.localeCompare(b.lastName)  // Sort alphabetically
     );
@@ -23,9 +39,10 @@ function Students() {
             {noStudents()}
 
             {students.map(student => (
-                <ul style={{ display: "block", margin: "1rem 0"}}>
+                <ul style={{ display: "block", margin: "1rem 0"}}
+                    key={student.id}>
                     <Link
-                        style={{ display: "inline-block", margin: "1rem 0"}}
+                        style={{ display: "inline-block", margin: "1rem 0", textDecoration: "none"}}
                         to={`/students/${student.id}`}
                         key={student.id}
                     >
