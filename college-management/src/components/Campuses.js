@@ -15,13 +15,6 @@ function Campuses() {
     return (
         <>
             <h2>All Campuses</h2>
-            {/*<ul>*/}
-            {/*    {props.map(campus =>*/}
-            {/*    <li>*/}
-            {/*        Name: {campus.name}*/}
-            {/*        <img src={campus.image} alt={campus.id}/>*/}
-            {/*    </li>)}*/}
-            {/*</ul>*/}
 
             {noCampus()}
 
@@ -29,7 +22,7 @@ function Campuses() {
                 <span style={{ display: "block", margin: "1rem 0"}}>
                     <Link
                         style={{ display: "inline-block", margin: "1rem 0"}}
-                        to={`/campuses/${campus.name}`}
+                        to={`/campuses/${campus.id}`}
                         key={campus.name}
                     >
                         {campus.name}
