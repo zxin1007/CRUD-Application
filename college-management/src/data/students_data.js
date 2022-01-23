@@ -1,5 +1,6 @@
 let students = [
     {
+        id: 1,
         firstName: "Z",
         lastName: "z",
         email: "a@gmail.com",
@@ -8,6 +9,7 @@ let students = [
         campus: "A"
     },
     {
+        id: 2,
         firstName: "B",
         lastName: "b",
         email: "b@gmail.com",
@@ -16,6 +18,7 @@ let students = [
         campus: "B"
     },
     {
+        id: 3,
         firstName: "C",
         lastName: "c",
         email: "c@gmail.com",
@@ -24,6 +27,7 @@ let students = [
         campus: "C"
     },
     {
+        id: 4,
         firstName: "D",
         lastName: "d",
         email: "d@gmail.com",
@@ -32,6 +36,7 @@ let students = [
         campus: "D"
     },
     {
+        id: 5,
         firstName: "E",
         lastName: "e",
         email: "e@gmail.com",
@@ -43,4 +48,10 @@ let students = [
 
 export function getStudents () {
     return students;
+}
+
+export function getStudent(id) {
+    return students.find(
+        student => student.id === id
+    );
 }

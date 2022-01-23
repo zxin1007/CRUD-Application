@@ -25,8 +25,8 @@ function Students() {
                 <ul style={{ display: "block", margin: "1rem 0"}}>
                     <Link
                         style={{ display: "inline-block", margin: "1rem 0"}}
-                        to={`/students/${student.lastName}%20${student.firstName}`}
-                        key={student.name}
+                        to={`/students/${student.id}`}
+                        key={student.id}
                     >
                         <li>{student.lastName}, {student.firstName}</li>
                     </Link>
