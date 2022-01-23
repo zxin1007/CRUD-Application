@@ -13,13 +13,17 @@ ReactDOM.render(
         <Routes>
             <Route path="home" element={<App />} />
             <Route path="/" element={<App />} >
-                <Route path="campuses" element={<Campuses />} >
-                    <Route path="campusName" element={<Campus />} />
-                </Route>
+                <Route path="campuses" element={<Campuses />} />
+                <Route path="campuses/:campusName" element={<Campus />} />
 
-                <Route path="students" element={<Students />} >
-                    <Route path="studentName" element={<Student />} />
-                </Route>
+                <Route path="students" element={<Students />} />
+                <Route path="student/:studentName" element={<Student />} />
+
+                <Route path="*" element={
+                    <main style={{ padding: "1rem" }}>
+                        <p>Invalid URL</p>
+                    </main>
+                }/>
             </Route>
         </Routes>
     </BrowserRouter>,
