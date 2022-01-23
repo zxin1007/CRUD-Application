@@ -1,5 +1,6 @@
 let campuses = [
     {
+        id: 1,
         name: "Campus A",
         image: "No image available",
         address: "2900 Bedford Ave, Brooklyn, NY 11210",
@@ -7,6 +8,7 @@ let campuses = [
         students: []
     },
     {
+        id: 2,
         name: "Campus B",
         image: "No image available",
         address: "2900 Bedford Ave, Brooklyn, NY 11210",
@@ -14,6 +16,7 @@ let campuses = [
         students: []
     },
     {
+        id: 3,
         name: "Campus C",
         image: "No image available",
         address: "2900 Bedford Ave, Brooklyn, NY 11210",
@@ -21,6 +24,7 @@ let campuses = [
         students: []
     },
     {
+        id: 4,
         name: "Campus D",
         image: "No image available",
         address: "2900 Bedford Ave, Brooklyn, NY 11210",
@@ -28,6 +32,7 @@ let campuses = [
         students: []
     },
     {
+        id: 5,
         name: "Campus E",
         image: "No image available",
         address: "2900 Bedford Ave, Brooklyn, NY 11210",
@@ -38,4 +43,16 @@ let campuses = [
 
 export function getCampuses() {
     return campuses;
+}
+
+export function getCampus(id) {
+    return campuses.find(
+        campus => campus.id === id
+    );
+}
+
+export function deleteCampus(name) {
+    campuses = campuses.filter(
+        campus => campus.name !== name
+    );
 }
