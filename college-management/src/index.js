@@ -17,7 +17,7 @@ ReactDOM.render(
                 <Route path="campuses/:campusId" element={<Campus />} />
 
                 <Route path="students" element={<Students />} />
-                <Route path="student/:studentId" element={<Student />} />
+                <Route path="students/:studentId" element={<Student />} />
 
                 <Route path="*" element={
                     <main style={{ padding: "1rem" }}>
