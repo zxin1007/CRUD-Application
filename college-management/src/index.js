@@ -14,10 +14,10 @@ ReactDOM.render(
             <Route path="home" element={<App />} />
             <Route path="/" element={<App />} >
                 <Route path="campuses" element={<Campuses />} />
-                <Route path="campuses/:campusName" element={<Campus />} />
+                <Route path="campuses/:campusId" element={<Campus />} />
 
                 <Route path="students" element={<Students />} />
-                <Route path="student/:studentName" element={<Student />} />
+                <Route path="student/:studentId" element={<Student />} />
 
                 <Route path="*" element={
                     <main style={{ padding: "1rem" }}>
