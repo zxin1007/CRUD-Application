@@ -13,6 +13,24 @@ function Campuses() {
             return <p>No campus exists in the database.</p>
         }
     }
+    // Image URL validation
+    // function isValidHttpUrl(string) {
+    //     let url;
+    //
+    //     try {
+    //         url = new URL(string);
+    //     } catch (_) {
+    //         return false;
+    //     }
+    //
+    //     return url.protocol === "http:" || url.protocol === "https:";
+    // }
+
+    // for (let image in campuses) {
+    //     if (!isValidHttpUrl(campuses[image].image)) {
+    //         campuses[image].image = "No image is available";
+    //     }
+    // }
 
     return (
         <>
@@ -20,28 +38,31 @@ function Campuses() {
 
             {noCampus()}
 
+            <div className="campus-container">
             {campuses.map(campus => (
-                <span style={{ display: "block", margin: "1rem 0"}}>
-                    <Link
-                        style={{ display: "inline-block", margin: "1rem 0"}}
-                        to={`/campuses/${campus.id}`}
-                        key={campus.name}
+                <div>
+                    <Link to={`/campuses/${campus.id}`}
+                          key={campus.name}
+                          style={{textDecoration: 'none',
+                          }}
                     >
                         {campus.name}
                     </Link>
 
-                    <span style={{ display: "block", margin: "1rem 0"}}>
-                        {campus.image}
-                    </span>
+                    <p>
+                        <img src={campus.image} width="200px"/>
+                    </p>
 
-                    <span>
-                        <button onClick={() => {
+                    <button
+                        onClick={() => {
                             deleteCampus(campus.name);
-                            navigate("/campuses")
-                        }}>X</button> Remove Campus
-                    </span>
-                </span>
+                            navigate("/campuses")}}
+                        className="delete-button"
+                    >X</button>
+
+                </div>
             ))}
+            </div>
 
             <CampusForm />
 
