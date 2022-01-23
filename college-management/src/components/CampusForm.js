@@ -22,7 +22,8 @@ export default function CampusForm() {
                            onChange={event =>
                                setCampus({...campus, [event.target.name]: event.target.value})}
                     />
-                </label>
+                </label><br/>
+                <input type="submit" value="Submit"/>
             </form>
         </>
     );
