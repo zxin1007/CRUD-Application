@@ -9,7 +9,7 @@ function Campuses() {
 
     const [campuses, setCampuses] = React.useState([]);
 
-    // Load students API from local host
+    // Load campus API from local host
     React.useEffect(async () => {
         try {
             await axios.get("http://localhost:3001/api/campus")
@@ -38,9 +38,9 @@ function Campuses() {
 
             <div className="campus-container">
             {campuses.map(campus => (
-                <div key={campus.name}>
+                <div key={campus.id}>
                     <Link to={`/campuses/${campus.id}`}
-                          key={campus.name}
+                          key={campus.id}
                           style={{textDecoration: 'none',
                           }}
                     >
