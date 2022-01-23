@@ -18,7 +18,7 @@ function Students() {
 
     return (
         <>
-            <h1>All Students</h1>
+            <h2>All Students</h2>
 
             {noStudents()}
 

@@ -2,7 +2,7 @@ let campuses = [
     {
         id: 1,
         name: "Campus A",
-        image: "No image available",
+        image: "https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y29sbGVnZXxlbnwwfHwwfHw%3D",
         address: "2900 Bedford Ave, Brooklyn, NY 11210",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         students: []
