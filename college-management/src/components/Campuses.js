@@ -23,47 +23,62 @@ function Campuses() {
         }
     }, []);
 
-    const noCampus = () => {
+    const renderCampus = () => {
         console.log(campuses.length);
-        if (campuses.length === 0) {
+        console.log(campuses.data)
+
+        if (campuses.data !== undefined) {
+            return <div className="campus-container">
+                {campuses.map(campus => (
+                    <div key={campus.id}>
+                        <Link to={`/campuses/${campus.id}`}
+                              key={campus.id}
+                              style={{textDecoration: 'none',
+                              }}
+                        >
+                            {campus.name}
+                        </Link>
+
+                        <p>
+                            <img src={campus.img} width="200px"/>
+                        </p>
+
+
+                        <button
+                            onClick={() => {
+                                deleteCampus(campus.id);
+                                navigate("/campuses")}}
+                            className="delete-button"
+                        >X</button>
+                    </div>
+                ))}
+            </div>
+        } else {
             return <p>No campus exists in the database.</p>
         }
     }
+
+    const deleteCampus = (campusId) => {
+        axios.delete(`http://localhost:3001/api/campus/${campusId}`,
+            {params: {id: campusId}})
+            .then(response => {
+                setCampuses(prevState => {
+                    return {
+                        campuses: prevState.campuses.filter(campus =>
+                        campus.id !== campusId)
+                    }
+                })
+                console.log(response);
+            })
+    };
 
     return (
         <>
             <h2>All Campuses</h2>
 
-            {noCampus()}
-
-            <div className="campus-container">
-            {campuses.map(campus => (
-                <div key={campus.id}>
-                    <Link to={`/campuses/${campus.id}`}
-                          key={campus.id}
-                          style={{textDecoration: 'none',
-                          }}
-                    >
-                        {campus.name}
-                    </Link>
-
-                    <p>
-                        <img src={campus.img} width="200px"/>
-                    </p>
-
-                    {/*Todo*/}
-                    {/*<button*/}
-                    {/*    onClick={() => {*/}
-                    {/*        deleteCampus(campus.name);*/}
-                    {/*        navigate("/campuses")}}*/}
-                    {/*    className="delete-button"*/}
-                    {/*>X</button>*/}
-                </div>
-            ))}
-            </div>
+            {campuses && renderCampus()}
 
             <CampusForm />
-
             <Outlet />
         </>
     );
