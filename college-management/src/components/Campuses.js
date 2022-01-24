@@ -1,10 +1,14 @@
 import React from'react';
 import axios from 'axios';
 import {Link, Outlet, useNavigate} from "react-router-dom";
-// import {deleteCampus} from "../data/campuses_data";
 import CampusForm from "./CampusForm";
 
-function Campuses() {
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    font-weight:300;
+`;
+
+export default function Campuses() {
     let navigate = useNavigate();
 
     const [campuses, setCampuses] = React.useState([]);
@@ -32,19 +36,17 @@ function Campuses() {
         if (typeof campuses !== "string") {
             return <div className="campus-container">
                 {campuses.map(campus => (
-                    <div key={campus.id}>
-                        <Link to={`/campuses/${campus.id}`}
-                              key={campus.id}
-                              style={{textDecoration: 'none',
-                              }}
+                    <div className="campus" key={campus.id}>
+                        <img src={campus.img} alt=""/>
+
+                        <div>
+                        <StyledLink
+                            style={{ display: "inline-block", margin: "1rem 0"}}
+                                to={`/campuses/${campus.id}`}
+                                key={campus.id}
                         >
-                            {campus.name}
-                        </Link>
-
-                        <p>
-                            <img src={campus.img} width="200px"/>
-                        </p>
-
+                            <strong><em>{campus.name}</em></strong>
+                        </StyledLink>
 
                         <button
                             onClick={() => {
@@ -53,6 +55,7 @@ function Campuses() {
                             }}
                             className="delete-button"
                         >X</button>
+                        </div>
                     </div>
                 ))}
             </div>
@@ -65,27 +68,19 @@ function Campuses() {
         axios.delete(`http://localhost:3001/api/campus/${campusId}`,
             {params: {id: campusId}})
             .then(response => {
-                // setCampuses(prevState => {
-                //     return {
-                //         campuses: prevState.campuses.filter(campus =>
-                //         campus.id !== campusId)
-                //     }
-                // })
                 setCampuses(response.data)
                 console.log(response);
             })
     };
 
     return (
-        <>
+        <div>
             <h2>All Campuses</h2>
 
             {campuses && renderCampus()}
 
             <CampusForm />
             <Outlet />
-        </>
+        </div>
     );
 }
-
-export default Campuses;

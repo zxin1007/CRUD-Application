@@ -1,10 +1,13 @@
 import React from'react';
 import axios from 'axios';
 import {Link, Outlet, useNavigate} from "react-router-dom";
-// import {getStudents} from "../data/students_data";
 import StudentForm from "./StudentForm";
 
-function Students() {
+const StyledLink = styled(Link)`
+    text-decoration: none;
+`;
+
+export default function Students() {
     let navigate = useNavigate();
 
     const [students, setStudents] = React.useState([]);
@@ -32,17 +35,16 @@ function Students() {
                 a.lastName.localeCompare(b.lastName)
             );
 
-            return <>
+            return <div className="studentDisplay">
                 {students.map(student => (
-                    <ul style={{ display: "block", margin: "1rem 0"}}
-                        key={student.id}>
-                        <Link
-                            style={{ display: "inline-block", margin: "1rem 0", textDecoration: "none"}}
+                    <ul key={student.id}>
+                        <StyledLink
                             to={`/students/${student.id}`}
                             key={student.id}
                         >
+                            <img src={student.img} alt=""/>
                             <li>{student.lastName}, {student.firstName}</li>
-                        </Link>
+                        </StykedLink>
 
                         <button
                             onClick={() => {
@@ -74,10 +76,7 @@ function Students() {
             {students && renderStudent()}
 
             <StudentForm />
-
             <Outlet />
         </>
     );
 }
-
-export default Students;

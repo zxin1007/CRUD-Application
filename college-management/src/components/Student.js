@@ -54,24 +54,17 @@ export default function Student() {
         }
     }
     return (
-        <>
-            <img src={img} />
+        <div class="studentInfo">
+            <img className="student-extended-img" src={img} alt=""></img>
             <h2>{fname} {lname}</h2>
-            <p>{img}</p>
-            <h3>Email</h3>
-            <p>{email}</p>
-            <h3>GPA</h3>
-            <p>{gpa}</p>
-            <h3>Campus</h3>
-            {noCampus()}
+            <h3>Email address: {email}</h3>
+            <h3>GPA: {gpa}</h3>
+            <h3>Campus: {noCampus()}</h3>
 
-
-            <div>
             <button onClick={() => {
                 deleteStudent(id);
                 navigate("/campuses")
             }}>X</button> Remove Campus
-            </div>
-        </>
+        </div>
     )
 }

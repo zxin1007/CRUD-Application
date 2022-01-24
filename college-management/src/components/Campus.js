@@ -49,23 +49,23 @@ export default function Campus() {
     };
 
     return (
-        <>
+        <div class="campusInfo">
             <h2>{name}</h2>
-            <p>{img}</p>
-            <h3>Address</h3>
+            <img className="campus-extended-img" src={img} alt=""/>
+            <h3>Address:</h3>
             <p>
                 {address}<br/>
                 {city}, {state} {zip}
             </p>
 
-            <h3>Description</h3>
-            <p>{desc}</p>
+            <h3>Description:</h3>
+            <p><em>{desc}</em></p>
             {/*<p>{campus.campus.students[0]}</p>*/}
 
             <button onClick={() => {
                 deleteCampus(name);
                 navigate("/campuses")
             }}>X</button> Remove Campus
-        </>
+        </div>
     )
 }
