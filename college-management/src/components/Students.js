@@ -1,44 +1,19 @@
-import React from'react';
-import {Link, Outlet} from "react-router-dom";
-import {getStudents} from "../data/students_data";
-import StudentForm from "./StudentForm";
+import {useParams} from "react-router-dom";
+import {getStudent} from "../data/students_data";
+import '../Students.css';
 
-function Students() {
-    let students = getStudents();
-    students.sort((a, b) =>
-        a.lastName.localeCompare(b.lastName)  // Sort alphabetically
-    );
 
-    const noStudents = () => {
-        console.log(students.length);
-        if (students.length === 0) {
-            return <p>No student exists in the database.</p>
-        }
-    }
+export default function Student() {
+    let params = useParams();
+    let student = getStudent(parseInt(params.studentId), 10)
 
     return (
-        <>
-            <h2>All Students</h2>
-
-            {noStudents()}
-
-            {students.map(student => (
-                <ul style={{ display: "block", margin: "1rem 0"}}>
-                    <Link
-                        style={{ display: "inline-block", margin: "1rem 0"}}
-                        to={`/students/${student.id}`}
-                        key={student.id}
-                    >
-                        <li>{student.lastName}, {student.firstName}</li>
-                    </Link>
-                </ul>
-            ))}
-
-            <StudentForm />
-
-            <Outlet />
-        </>
-    );
+        <div class="studentInfo">
+            <img class="student-extended-img" src={student.image} alt=""></img>
+            <h2>{student.firstName} {student.lastName}</h2>
+            <h3>Email address: {student.email}</h3>
+            <h3>GPA: {student.gpa}</h3>
+            <h3>Campus: {student.campus}</h3>
+        </div>
+    )
 }
-
-export default Students;

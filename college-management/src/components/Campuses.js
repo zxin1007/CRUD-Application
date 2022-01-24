@@ -1,7 +1,13 @@
 import React from'react';
 import {Link, Outlet, useNavigate} from "react-router-dom";
 import {getCampuses, deleteCampus} from "../data/campuses_data";
-import CampusForm from "./CampusForm";
+import '../Campuses.css';
+import styled from "styled-components";
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    font-weight:300;
+`;
 
 function Campuses() {
     let navigate = useNavigate();
@@ -13,61 +19,41 @@ function Campuses() {
             return <p>No campus exists in the database.</p>
         }
     }
-    // Image URL validation
-    // function isValidHttpUrl(string) {
-    //     let url;
-    //
-    //     try {
-    //         url = new URL(string);
-    //     } catch (_) {
-    //         return false;
-    //     }
-    //
-    //     return url.protocol === "http:" || url.protocol === "https:";
-    // }
-
-    // for (let image in campuses) {
-    //     if (!isValidHttpUrl(campuses[image].image)) {
-    //         campuses[image].image = "No image is available";
-    //     }
-    // }
 
     return (
-        <>
-            <h2>All Campuses</h2>
+        <div class="campusDisplay">
+            <h1>All Campuses</h1>
 
             {noCampus()}
 
-            <div className="campus-container">
             {campuses.map(campus => (
-                <div>
-                    <Link to={`/campuses/${campus.id}`}
-                          key={campus.name}
-                          style={{textDecoration: 'none',
-                          }}
+                <div class="campus">
+                    <img src={campus.image} alt=""></img>
+
+                    <div>
+                    <StyledLink
+                        style={{ display: "inline-block", margin: "1rem 0"}}
+                        to={`/campuses/${campus.id}`}
+                        key={campus.name}
                     >
-                        {campus.name}
-                    </Link>
+                        <strong><em>{campus.name}</em></strong>
+                    </StyledLink>
 
-                    <p>
-                        <img src={campus.image} width="200px"/>
-                    </p>
-
-                    <button
-                        onClick={() => {
+                    <button onClick={() => {
                             deleteCampus(campus.name);
-                            navigate("/campuses")}}
-                        className="delete-button"
-                    >X</button>
+                            navigate("/campuses")
+                        }}>X</button> 
+                    </div>
+                    
 
+                    
+
+                        
                 </div>
             ))}
-            </div>
-
-            <CampusForm />
 
             <Outlet />
-        </>
+        </div>
     );
 }
 
