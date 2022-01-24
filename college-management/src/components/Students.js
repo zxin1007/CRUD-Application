@@ -44,7 +44,7 @@ export default function Students() {
                         >
                             <img src={student.img} alt=""/>
                             <li>{student.lastName}, {student.firstName}</li>
-                        </StykedLink>
+                        </StyledLink>
 
                         <button
                             onClick={() => {
