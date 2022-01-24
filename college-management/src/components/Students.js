@@ -54,7 +54,7 @@ export default function Students() {
                         >X</button>
                     </ul>
                 ))}
-                </>
+                </div>
         } else {
             return <p>No student exists in the database.</p>
         }
