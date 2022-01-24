@@ -21,7 +21,7 @@ function Campuses() {
         } catch (error) {
             console.log(error);
         }
-    }, []);
+    }, [campuses]);
 
     const renderCampus = () => {
         console.log(campuses.length);
