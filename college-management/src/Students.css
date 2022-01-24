@@ -1,0 +1,43 @@
+.studentDisplay h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.studentDisplay {
+    padding:20px;
+    
+}
+
+ul {
+    list-style: none;
+    margin:10px;
+    display:inline-block;
+}
+
+li {
+    text-align: center;
+    font-size:20px;
+    font-family: Arial, Tahoma, Serif;
+    padding:20px;
+}
+
+.studentInfo {
+    text-align: center;
+}
+
+.studentInfo > * {
+    padding:10px;
+}
+
+.studentDisplay ul {
+    border:2px solid black;
+    border-radius: 10px;
+}
+
+.studentDisplay img {
+   width:150px;
+}
+
+.student-extended-img {
+    width:300px;
+}

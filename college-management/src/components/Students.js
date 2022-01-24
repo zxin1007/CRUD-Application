@@ -1,6 +1,14 @@
 import React from'react';
 import {Link, Outlet} from "react-router-dom";
 import {getStudents} from "../data/students_data";
+import '../Students.css';
+import styled from "styled-components";
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    
+
+`;
 
 function Students() {
     let students = getStudents();
@@ -16,25 +24,25 @@ function Students() {
     }
 
     return (
-        <>
+        <div class="studentDisplay">
             <h1>All Students</h1>
 
             {noStudents()}
 
             {students.map(student => (
-                <ul style={{ display: "block", margin: "1rem 0"}}>
-                    <Link
-                        style={{ display: "inline-block", margin: "1rem 0"}}
+                <ul>
+                    <StyledLink
                         to={`/students/${student.id}`}
                         key={student.id}
                     >
+                        <img src={student.image} alt=""></img>
                         <li>{student.lastName}, {student.firstName}</li>
-                    </Link>
+                    </StyledLink>
                 </ul>
             ))}
 
             <Outlet />
-        </>
+        </div>
     );
 }
 

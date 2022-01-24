@@ -1,6 +1,13 @@
 import React from'react';
 import {Link, Outlet, useNavigate} from "react-router-dom";
 import {getCampuses, deleteCampus} from "../data/campuses_data";
+import '../Campuses.css';
+import styled from "styled-components";
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    font-weight:300;
+`;
 
 function Campuses() {
     let navigate = useNavigate();
@@ -14,36 +21,39 @@ function Campuses() {
     }
 
     return (
-        <>
-            <h2>All Campuses</h2>
+        <div class="campusDisplay">
+            <h1>All Campuses</h1>
 
             {noCampus()}
 
             {campuses.map(campus => (
-                <span style={{ display: "block", margin: "1rem 0"}}>
-                    <Link
+                <div class="campus">
+                    <img src={campus.image} alt=""></img>
+
+                    <div>
+                    <StyledLink
                         style={{ display: "inline-block", margin: "1rem 0"}}
                         to={`/campuses/${campus.id}`}
                         key={campus.name}
                     >
-                        {campus.name}
-                    </Link>
+                        <strong><em>{campus.name}</em></strong>
+                    </StyledLink>
 
-                    <span style={{ display: "block", margin: "1rem 0"}}>
-                        {campus.image}
-                    </span>
-
-                    <span>
-                        <button onClick={() => {
+                    <button onClick={() => {
                             deleteCampus(campus.name);
                             navigate("/campuses")
-                        }}>X</button> Remove Campus
-                    </span>
-                </span>
+                        }}>X</button> 
+                    </div>
+                    
+
+                    
+
+                        
+                </div>
             ))}
 
             <Outlet />
-        </>
+        </div>
     );
 }
 

@@ -4,7 +4,7 @@ let students = [
         firstName: "Z",
         lastName: "z",
         email: "a@gmail.com",
-        image: "No image available",
+        image: "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png",
         gpa: 0.0,
         campus: "A"
     },
@@ -13,7 +13,7 @@ let students = [
         firstName: "B",
         lastName: "b",
         email: "b@gmail.com",
-        image: "No image available",
+        image: "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png",
         gpa: 0.1,
         campus: "B"
     },
@@ -22,7 +22,7 @@ let students = [
         firstName: "C",
         lastName: "c",
         email: "c@gmail.com",
-        image: "No image available",
+        image: "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png",
         gpa: 0.0,
         campus: "C"
     },
@@ -31,7 +31,7 @@ let students = [
         firstName: "D",
         lastName: "d",
         email: "d@gmail.com",
-        image: "No image available",
+        image: "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png",
         gpa: 0.0,
         campus: "D"
     },
@@ -40,7 +40,7 @@ let students = [
         firstName: "E",
         lastName: "e",
         email: "e@gmail.com",
-        image: "No image available",
+        image: "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png",
         gpa: 0.0,
         campus: "E"
     }
