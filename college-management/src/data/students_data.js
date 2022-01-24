@@ -55,3 +55,9 @@ export function getStudent(id) {
         student => student.id === id
     );
 }
+
+export function deleteStudent(id) {
+    students = students.filter(
+        student => student.id !== id
+    );
+}
