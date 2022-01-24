@@ -21,8 +21,9 @@ function Campuses() {
         } catch (error) {
             console.log(error);
         }
-    }, [campuses]);
+    }, [setCampuses]);
 
+    // Display either all existing campuses or an "error" message
     const renderCampus = () => {
         console.log(campuses.length);
         console.log(campuses)
@@ -48,7 +49,8 @@ function Campuses() {
                         <button
                             onClick={() => {
                                 deleteCampus(campus.id);
-                                navigate("/campuses")}}
+                                navigate("/campuses")
+                            }}
                             className="delete-button"
                         >X</button>
                     </div>
@@ -63,12 +65,13 @@ function Campuses() {
         axios.delete(`http://localhost:3001/api/campus/${campusId}`,
             {params: {id: campusId}})
             .then(response => {
-                setCampuses(prevState => {
-                    return {
-                        campuses: prevState.campuses.filter(campus =>
-                        campus.id !== campusId)
-                    }
-                })
+                // setCampuses(prevState => {
+                //     return {
+                //         campuses: prevState.campuses.filter(campus =>
+                //         campus.id !== campusId)
+                //     }
+                // })
+                setCampuses(response.data)
                 console.log(response);
             })
     };
