@@ -1,60 +1,86 @@
 import React from'react';
+import axios from 'axios';
 import {Link, Outlet, useNavigate} from "react-router-dom";
-import {getCampuses, deleteCampus} from "../data/campuses_data";
-import '../Campuses.css';
-import styled from "styled-components";
+import CampusForm from "./CampusForm";
 
 const StyledLink = styled(Link)`
     text-decoration: none;
     font-weight:300;
 `;
 
-function Campuses() {
+export default function Campuses() {
     let navigate = useNavigate();
-    let campuses = getCampuses();
 
-    const noCampus = () => {
+    const [campuses, setCampuses] = React.useState([]);
+
+    // Load campus API from local host
+    React.useEffect(async () => {
+        try {
+            await axios.get("http://localhost:3001/api/campus")
+                .then((response) => {
+                    console.log(response.data)
+                    setCampuses(response.data)
+                    console.log(campuses);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    }, [setCampuses]);
+
+    // Display either all existing campuses or an "error" message
+    const renderCampus = () => {
         console.log(campuses.length);
-        if (campuses.length === 0) {
+        console.log(campuses)
+        console.log(campuses.data)
+
+        if (typeof campuses !== "string") {
+            return <div className="campus-container">
+                {campuses.map(campus => (
+                    <div className="campus" key={campus.id}>
+                        <img src={campus.img} alt=""/>
+
+                        <div>
+                        <StyledLink
+                            style={{ display: "inline-block", margin: "1rem 0"}}
+                                to={`/campuses/${campus.id}`}
+                                key={campus.id}
+                        >
+                            <strong><em>{campus.name}</em></strong>
+                        </StyledLink>
+
+                        <button
+                            onClick={() => {
+                                deleteCampus(campus.id);
+                                navigate("/campuses")
+                            }}
+                            className="delete-button"
+                        >X</button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        } else {
             return <p>No campus exists in the database.</p>
         }
     }
 
+    const deleteCampus = (campusId) => {
+        axios.delete(`http://localhost:3001/api/campus/${campusId}`,
+            {params: {id: campusId}})
+            .then(response => {
+                setCampuses(response.data)
+                console.log(response);
+            })
+    };
+
     return (
-        <div class="campusDisplay">
-            <h1>All Campuses</h1>
+        <div>
+            <h2>All Campuses</h2>
 
-            {noCampus()}
+            {campuses && renderCampus()}
 
-            {campuses.map(campus => (
-                <div class="campus">
-                    <img src={campus.image} alt=""></img>
-
-                    <div>
-                    <StyledLink
-                        style={{ display: "inline-block", margin: "1rem 0"}}
-                        to={`/campuses/${campus.id}`}
-                        key={campus.name}
-                    >
-                        <strong><em>{campus.name}</em></strong>
-                    </StyledLink>
-
-                    <button onClick={() => {
-                            deleteCampus(campus.name);
-                            navigate("/campuses")
-                        }}>X</button> 
-                    </div>
-                    
-
-                    
-
-                        
-                </div>
-            ))}
-
+            <CampusForm />
             <Outlet />
         </div>
     );
 }
-
-export default Campuses;
