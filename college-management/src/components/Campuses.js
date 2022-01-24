@@ -26,8 +26,9 @@ function Campuses() {
     const renderCampus = () => {
         console.log(campuses.length);
         console.log(campuses)
+        console.log(campuses.data)
 
-        if (campuses !== undefined) {
+        if (typeof campuses !== "string") {
             return <div className="campus-container">
                 {campuses.map(campus => (
                     <div key={campus.id}>
