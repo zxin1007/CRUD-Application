@@ -2,6 +2,7 @@ import React from'react';
 import axios from 'axios';
 import {Link, Outlet, useNavigate} from "react-router-dom";
 import CampusForm from "./CampusForm";
+import styled, { css } from 'styled-components'
 
 const StyledLink = styled(Link)`
     text-decoration: none;
