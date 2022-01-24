@@ -10,35 +10,16 @@ export default function CampusForm() {
         zip: ""
     });
 
+    // Prepare to post using form input data
     const handleChange = (event) => {
         setCampus(prevState => {
             return {...campus, [event.target.name]: event.target.value}
         })
     }
 
+    // POST request
     const addCampus = (event) => {
         event.preventDefault();
-        console.log(campus);
-
-        // let formData = new FormData();
-        //
-        // formData.append("name", campus.name);
-        // formData.append("address", campus.address);
-        //
-        // axios({
-        //     method: "POST",
-        //     url: "http://localhost:3001/api/campus/",
-        //     data: formData,
-        //     headers: {"Content-Type": "multipart/form-data"},
-        // }).then(function(response) {
-        //     console.log(response);
-        // }).catch(function(error) {
-        //     console.log(error);
-        // })
-
-        setCampus(prevState => {
-            return {...campus, id: campus.length}
-        })
         console.log(campus);
 
         axios.post("http://localhost:3001/api/campus", campus)
@@ -89,6 +70,7 @@ export default function CampusForm() {
                            onChange={handleChange}
                     />
                 </label><br/>
+
                 <input type="submit" value="Submit"/>
             </form>
         </>
